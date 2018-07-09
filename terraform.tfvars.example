@@ -1,0 +1,3 @@
+key_name = "Key pair name (see Key Pairs in aws console)"
+ssh_key = "/path/to/key.pem"
+ssh_user = "user"

@@ -1,0 +1,5 @@
+config.py
+ssh.sh
+terraform.tfvars
+*tfstate*
+.terraform
