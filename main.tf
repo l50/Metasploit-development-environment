@@ -9,7 +9,7 @@ resource "aws_instance" "kali-container" {
     security_groups = ["${aws_security_group.msf-dev-sec-group.name}"]
 
     provisioner "file" {
-        source      = "./setupKali.sh"
+        source      = "scripts/setupKali.sh"
         destination = "/tmp/setupKali.sh"
         connection {
             type = "ssh"
