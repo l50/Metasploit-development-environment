@@ -9,8 +9,8 @@ resource "aws_instance" "kali-container" {
     security_groups = ["${aws_security_group.msf-dev-sec-group.name}"]
 
     provisioner "file" {
-        source      = "./setup.sh"
-        destination = "/tmp/setup.sh"
+        source      = "./setupKali.sh"
+        destination = "/tmp/setupKali.sh"
         connection {
             type = "ssh"
             user = "${var.ssh_user}"
@@ -20,8 +20,8 @@ resource "aws_instance" "kali-container" {
 
     provisioner "remote-exec" {
         inline = [
-            "chmod +x /tmp/setup.sh",
-            "sudo /tmp/setup.sh",
+            "chmod +x /tmp/setupKali.sh",
+            "sudo /tmp/setupKali.sh",
         ]
         connection {
             type = "ssh"
@@ -44,11 +44,12 @@ resource "aws_instance" "target" {
     tags {
         Name = "target"
     }
-/*
-    provisioner "local-exec" {
-        command = "python transfer_payload.py"
-    }
+}
 
-    depends_on = ["aws_instance.kali-container"]
-*/
+output "kali-container" {
+    value = "${aws_instance.kali-container.public_dns}"
+}
+
+output "target" {
+    value = "${aws_instance.target.public_dns}"
 }

@@ -1,0 +1,11 @@
+variable "key_name" {
+    default = "Key pair name (see Key Pairs in aws console)"
+}
+
+variable "ssh_key" {
+    default = "/path/to/key.pem"
+}
+
+variable "ssh_user" {
+    default = "user"
+}

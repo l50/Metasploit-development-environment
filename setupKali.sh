@@ -12,13 +12,18 @@ installDocker(){
 
 runContainer(){
     docker pull kalilinux/kali-linux-docker
-    docker run -d -v $HOME/.msf4:/$HOME/.msf4 -p 4444:4444 -it \
+    docker run -d -v /root/.msf4:/root/.msf4 -p 4444:4444 -it \
         --name=kali kalilinux/kali-linux-docker
 }
 
 setupContainer(){
     docker exec -it kali apt update
     docker exec -it kali apt install -y metasploit-framework
+}
+
+setupDB(){
+    docker exec -it kali service postgresql start
+    docker exec -it kali msfdb init
 }
 
 genRc(){
@@ -42,5 +47,6 @@ genPayload(){
 installDocker
 runContainer
 setupContainer
+setupDB
 genRc
 genPayload

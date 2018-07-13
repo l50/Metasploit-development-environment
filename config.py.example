@@ -1,1 +1,3 @@
-ssh_key = "/path/to/key.pem"
+kali_system_name = 'kali-container'
+ssh_key = '/path/to/key.pem'
+target_system_name = 'target'
