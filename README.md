@@ -39,7 +39,6 @@ Let me know: jayson.e.grace@gmail.com
   from the official guide](https://github.com/rapid7/metasploit-framework/wiki/Setting-Up-a-Metasploit-Development-Environment)
 - [] Decide if we should run the kali container using ECS instead of
   running it on an EC2 instance
-- [] Travis-CI - is this even possible?
 
 ## License
 MIT
