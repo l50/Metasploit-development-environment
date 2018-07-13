@@ -11,13 +11,6 @@ Presently, this does the following:
    listener
 6. Transfer that payload to the target system and ```chmod +x``` it
 
-To get a shell for testing purposes:
-1. ssh into the instance with the kali container
-2. Get into the kali container: ```sudo docker exec -it kali bash```
-3. Run the listener: ```msfconsole -r /root/.msf4/evil.rc```
-4. ssh into the "target" instance
-5. Start the payload on the target: ```cd /tmp && ./shell.elf```
-
 ## Installation:
 1. Install [pipenv](https://github.com/pypa/pipenv)
 2. Clone into this repo
@@ -27,6 +20,13 @@ To get a shell for testing purposes:
 ## Usage
 1. Fill out required vars in config.py and vars.tf
 2. Run ```make build```
+
+### To get a shell for testing purposes:
+1. ssh into the instance with the kali container
+2. Get into the kali container: ```sudo docker exec -it kali bash```
+3. Run the listener: ```msfconsole -r /root/.msf4/evil.rc```
+4. ssh into the "target" instance
+5. Start the payload on the target: ```cd /tmp && ./shell.elf```
 
 ## To tear it down:
 ```make destroy```
