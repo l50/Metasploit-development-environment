@@ -9,8 +9,8 @@ resource "aws_instance" "kali-container" {
     security_groups = ["${aws_security_group.msf-dev-sec-group.name}"]
 
     provisioner "file" {
-        source      = "scripts/setupKali.sh"
-        destination = "/tmp/setupKali.sh"
+        source      = "scripts/setup_kali.sh"
+        destination = "/tmp/setup_kali.sh"
         connection {
             type = "ssh"
             user = "${var.ssh_user}"
@@ -20,8 +20,8 @@ resource "aws_instance" "kali-container" {
 
     provisioner "remote-exec" {
         inline = [
-            "chmod +x /tmp/setupKali.sh",
-            "sudo /tmp/setupKali.sh",
+            "chmod +x /tmp/setup_kali.sh",
+            "sudo /tmp/setup_kali.sh",
         ]
         connection {
             type = "ssh"
