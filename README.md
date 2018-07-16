@@ -31,10 +31,14 @@ Presently, this does the following:
 ## To tear it down:
 ```make destroy```
 
+## Time to build environment
+As of 7/15/2018, we are looking at 10m23s to stand up the entire environment
+
 ### Something Missing?
 Let me know: jayson.e.grace@gmail.com
 
 ### TODO:
+- [] Install postgres in development container
 - [] Set up proper metasploit development container using [instructions
   from the official guide](https://github.com/rapid7/metasploit-framework/wiki/Setting-Up-a-Metasploit-Development-Environment)
 - [] Decide if we should run the kali container using ECS instead of
@@ -42,4 +46,3 @@ Let me know: jayson.e.grace@gmail.com
 
 ## License
 MIT
-
