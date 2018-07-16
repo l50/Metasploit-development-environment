@@ -3,3 +3,5 @@ ssh.sh
 vars.tf
 *tfstate*
 .terraform
+# For items relating to pipenv functionality
+*cache*
