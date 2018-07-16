@@ -10,15 +10,20 @@ install_docker(){
     sudo apt install -y docker-ce
 }
 
-run_container(){
+run_containers(){
     docker pull kalilinux/kali-linux-docker
+    # Msf playground
     docker run -d -v /root/.msf4:/root/.msf4 -p 4444:4444 -it \
         --name=kali kalilinux/kali-linux-docker
+    # Msfdev environment
+    docker run -d -v /root/.msf4:/root/.msf4 -it \
+        --name=msf kalilinux/kali-linux-docker
 }
 
-setup_container(){
+setup_containers(){
     docker exec -it kali apt update
     docker exec -it kali apt install -y metasploit-framework
+    docker exec -it msf apt update
 }
 
 setup_db(){
@@ -44,9 +49,16 @@ gen_payload(){
     docker cp kali:/root/.msf4/shell.elf /tmp/shell.elf
 }
 
+setup_msf()
+{
+    docker cp /tmp/msf_dev.sh msf:/tmp/msf_dev.sh
+    docker exec -it msf bash /tmp/msf_dev.sh
+}
+
 install_docker
-run_container
-setup_container
+run_containers
+setup_containers
 setup_db
 gen_rc
 gen_payload
+setup_msf

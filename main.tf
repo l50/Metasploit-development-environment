@@ -8,6 +8,18 @@ resource "aws_instance" "kali-container" {
     key_name        = "${var.key_name}"
     security_groups = ["${aws_security_group.msf-dev-sec-group.name}"]
 
+    # Transfer the script to setup the metasploit development environment
+    provisioner "file" {
+        source      = "scripts/msf_dev.sh"
+        destination = "/tmp/msf_dev.sh"
+        connection {
+            type = "ssh"
+            user = "${var.ssh_user}"
+            private_key = "${file("${var.ssh_key}")}"
+        }
+    }
+
+    # Transfer the script to setup the kali container
     provisioner "file" {
         source      = "scripts/setup_kali.sh"
         destination = "/tmp/setup_kali.sh"
@@ -18,6 +30,7 @@ resource "aws_instance" "kali-container" {
         }
     }
 
+    # Setup the kali container
     provisioner "remote-exec" {
         inline = [
             "chmod +x /tmp/setup_kali.sh",
@@ -29,6 +42,7 @@ resource "aws_instance" "kali-container" {
             private_key = "${file("${var.ssh_key}")}"
         }
     }
+
 
     tags {
         Name = "kali-container"
