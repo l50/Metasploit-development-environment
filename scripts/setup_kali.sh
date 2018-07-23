@@ -10,6 +10,14 @@ install_docker(){
     sudo apt install -y docker-ce
 }
 
+install_compose(){
+    wget https://gist.githubusercontent.com/l50/db44b128cd599a605bc30e200cdebc26/raw/8ed93cf61927f81669954dd0cb0f4a21b49d0485/get_latest_release.py
+    version=$(python3 get_latest_release.py --repo 'docker/compose')
+    sudo curl -L https://github.com/docker/compose/releases/download/$(version)/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+}
+
 run_containers(){
     docker pull kalilinux/kali-linux-docker
     # Msf playground
@@ -56,6 +64,7 @@ setup_msf()
 }
 
 install_docker
+install_compose
 run_containers
 setup_containers
 setup_db
