@@ -8,7 +8,7 @@ destroy:
 
 install:
 	pipenv --python 3.6.5 install
-	terraform init
 	cp examples/config.py.example scripts/config.py
 	cp examples/vars.tf.example vars.tf
+	terraform init
 	echo 'You, human! Fill out config.py and vars.tf'
